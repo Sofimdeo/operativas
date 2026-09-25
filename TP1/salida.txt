@@ -1,0 +1,822 @@
+Márgenes de contribución ($/u): {'B': 240, 'L': 55, 'T': 8}
+Margen por hora de extrusora ($/h): {'B': '800', 'L': '458.3333', 'T': '400'}
+
+==============================================================================
+P1 - Estado original K=1  (máx. 1 producto/s, 600 h)
+==============================================================================
+
+* bidones: INFACTIBLE (si hay bidones debe haber tapas: y_B <= y_T)
+
+* Combinación botellas:
+
+  Z = 55·L' + 6000   (constante = 200·márgenes − preparación 5000)
+
+  Tableau inicial (iteración 0)
+  Base           L'       s_DL        s_H        s_K         LD
+  s_DL            1          1          0          0       4300
+  s_H          0.12          0          1          0        576
+  s_K          0.25          0          0          1       2950
+  Z             -55          0          0          0          0
+
+  -> Entra L' (costo reducido -55); cocientes: s_DL=4300, s_H=4800, s_K=11800; sale s_DL; pivote 1
+
+  Tableau iteración 1
+  Base           L'       s_DL        s_H        s_K         LD
+  L'              1          1          0          0       4300
+  s_H             0      -0.12          1          0         60
+  s_K             0      -0.25          0          1       1875
+  Z               0         55          0          0     236500
+  => Utilidad neta = 242500  | plan: botellas=4500  | precio sombra hora = 0 $/h
+
+* Combinación tapas:
+
+  Z = 8·T' + -900   (constante = 200·márgenes − preparación 2500)
+
+  Tableau inicial (iteración 0)
+  Base           T'       s_DT        s_H        s_K         LD
+  s_DT            1          1          0          0       9800
+  s_H          0.02          0          1          0        596
+  s_K          0.05          0          0          1       2990
+  Z              -8          0          0          0          0
+
+  -> Entra T' (costo reducido -8); cocientes: s_DT=9800, s_H=29800, s_K=59800; sale s_DT; pivote 1
+
+  Tableau iteración 1
+  Base           T'       s_DT        s_H        s_K         LD
+  T'              1          1          0          0       9800
+  s_H             0      -0.02          1          0        400
+  s_K             0      -0.05          0          1       2500
+  Z               0          8          0          0      78400
+  => Utilidad neta = 77500  | plan: tapas=10000  | precio sombra hora = 0 $/h
+
+>>> ÓPTIMO: utilidad neta = 242500 $ ; plan = bidones=0, botellas=4500, tapas=0
+
+==============================================================================
+P3 - Con empleado adicional (K=3)  (máx. 3 producto/s, 600 h)
+==============================================================================
+
+* bidones: INFACTIBLE (si hay bidones debe haber tapas: y_B <= y_T)
+
+* Combinación botellas:
+
+  Z = 55·L' + 6000   (constante = 200·márgenes − preparación 5000)
+
+  Tableau inicial (iteración 0)
+  Base           L'       s_DL        s_H        s_K         LD
+  s_DL            1          1          0          0       4300
+  s_H          0.12          0          1          0        576
+  s_K          0.25          0          0          1       2950
+  Z             -55          0          0          0          0
+
+  -> Entra L' (costo reducido -55); cocientes: s_DL=4300, s_H=4800, s_K=11800; sale s_DL; pivote 1
+
+  Tableau iteración 1
+  Base           L'       s_DL        s_H        s_K         LD
+  L'              1          1          0          0       4300
+  s_H             0      -0.12          1          0         60
+  s_K             0      -0.25          0          1       1875
+  Z               0         55          0          0     236500
+  => Utilidad neta = 242500  | plan: botellas=4500  | precio sombra hora = 0 $/h
+
+* Combinación tapas:
+
+  Z = 8·T' + -900   (constante = 200·márgenes − preparación 2500)
+
+  Tableau inicial (iteración 0)
+  Base           T'       s_DT        s_H        s_K         LD
+  s_DT            1          1          0          0       9800
+  s_H          0.02          0          1          0        596
+  s_K          0.05          0          0          1       2990
+  Z              -8          0          0          0          0
+
+  -> Entra T' (costo reducido -8); cocientes: s_DT=9800, s_H=29800, s_K=59800; sale s_DT; pivote 1
+
+  Tableau iteración 1
+  Base           T'       s_DT        s_H        s_K         LD
+  T'              1          1          0          0       9800
+  s_H             0      -0.02          1          0        400
+  s_K             0      -0.05          0          1       2500
+  Z               0          8          0          0      78400
+  => Utilidad neta = 77500  | plan: tapas=10000  | precio sombra hora = 0 $/h
+
+* bidones+botellas: INFACTIBLE (si hay bidones debe haber tapas: y_B <= y_T)
+
+* Combinación bidones+tapas:
+
+  Z = 240·B' + 8·T' + 15700   (constante = 200·márgenes − preparación 33900)
+
+  Tableau inicial (iteración 0)
+  Base           B'         T'       s_DB       s_DT        s_H        s_K         LD
+  s_DB            1          0          1          0          0          0        700
+  s_DT            0          1          0          1          0          0       9800
+  s_H           0.3       0.02          0          0          1          0        536
+  s_K           1.2       0.05          0          0          0          1       2750
+  Z            -240         -8          0          0          0          0          0
+
+  -> Entra B' (costo reducido -240); cocientes: s_DB=700, s_H=1786.6667, s_K=2291.6667; sale s_DB; pivote 1
+
+  Tableau iteración 1
+  Base           B'         T'       s_DB       s_DT        s_H        s_K         LD
+  B'              1          0          1          0          0          0        700
+  s_DT            0          1          0          1          0          0       9800
+  s_H             0       0.02       -0.3          0          1          0        326
+  s_K             0       0.05       -1.2          0          0          1       1910
+  Z               0         -8        240          0          0          0     168000
+
+  -> Entra T' (costo reducido -8); cocientes: s_DT=9800, s_H=16300, s_K=38200; sale s_DT; pivote 1
+
+  Tableau iteración 2
+  Base           B'         T'       s_DB       s_DT        s_H        s_K         LD
+  B'              1          0          1          0          0          0        700
+  T'              0          1          0          1          0          0       9800
+  s_H             0          0       -0.3      -0.02          1          0        130
+  s_K             0          0       -1.2      -0.05          0          1       1420
+  Z               0          0        240          8          0          0     246400
+  => Utilidad neta = 262100  | plan: bidones=900, tapas=10000  | precio sombra hora = 0 $/h
+
+* Combinación botellas+tapas:
+
+  Z = 55·L' + 8·T' + 5100   (constante = 200·márgenes − preparación 7500)
+
+  Tableau inicial (iteración 0)
+  Base           L'         T'       s_DL       s_DT        s_H        s_K         LD
+  s_DL            1          0          1          0          0          0       4300
+  s_DT            0          1          0          1          0          0       9800
+  s_H          0.12       0.02          0          0          1          0        572
+  s_K          0.25       0.05          0          0          0          1       2940
+  Z             -55         -8          0          0          0          0          0
+
+  -> Entra L' (costo reducido -55); cocientes: s_DL=4300, s_H=4766.6667, s_K=11760; sale s_DL; pivote 1
+
+  Tableau iteración 1
+  Base           L'         T'       s_DL       s_DT        s_H        s_K         LD
+  L'              1          0          1          0          0          0       4300
+  s_DT            0          1          0          1          0          0       9800
+  s_H             0       0.02      -0.12          0          1          0         56
+  s_K             0       0.05      -0.25          0          0          1       1865
+  Z               0         -8         55          0          0          0     236500
+
+  -> Entra T' (costo reducido -8); cocientes: s_DT=9800, s_H=2800, s_K=37300; sale s_H; pivote 0.02
+
+  Tableau iteración 2
+  Base           L'         T'       s_DL       s_DT        s_H        s_K         LD
+  L'              1          0          1          0          0          0       4300
+  s_DT            0          0          6          1        -50          0       7000
+  T'              0          1         -6          0         50          0       2800
+  s_K             0          0       0.05          0       -2.5          1       1725
+  Z               0          0          7          0        400          0     258900
+  => Utilidad neta = 264000  | plan: botellas=4500, tapas=3000  | precio sombra hora = 400 $/h
+
+* Combinación bidones+botellas+tapas:
+
+  Z = 240·B' + 55·L' + 8·T' + 21700   (constante = 200·márgenes − preparación 38900)
+
+  Tableau inicial (iteración 0)
+  Base           B'         L'         T'       s_DB       s_DL       s_DT        s_H        s_K         LD
+  s_DB            1          0          0          1          0          0          0          0        700
+  s_DL            0          1          0          0          1          0          0          0       4300
+  s_DT            0          0          1          0          0          1          0          0       9800
+  s_H           0.3       0.12       0.02          0          0          0          1          0        512
+  s_K           1.2       0.25       0.05          0          0          0          0          1       2700
+  Z            -240        -55         -8          0          0          0          0          0          0
+
+  -> Entra B' (costo reducido -240); cocientes: s_DB=700, s_H=1706.6667, s_K=2250; sale s_DB; pivote 1
+
+  Tableau iteración 1
+  Base           B'         L'         T'       s_DB       s_DL       s_DT        s_H        s_K         LD
+  B'              1          0          0          1          0          0          0          0        700
+  s_DL            0          1          0          0          1          0          0          0       4300
+  s_DT            0          0          1          0          0          1          0          0       9800
+  s_H             0       0.12       0.02       -0.3          0          0          1          0        302
+  s_K             0       0.25       0.05       -1.2          0          0          0          1       1860
+  Z               0        -55         -8        240          0          0          0          0     168000
+
+  -> Entra L' (costo reducido -55); cocientes: s_DL=4300, s_H=2516.6667, s_K=7440; sale s_H; pivote 0.12
+
+  Tableau iteración 2
+  Base           B'         L'         T'       s_DB       s_DL       s_DT        s_H        s_K         LD
+  B'              1          0          0          1          0          0          0          0        700
+  s_DL            0          0    -0.1667        2.5          1          0    -8.3333          0  1783.3333
+  s_DT            0          0          1          0          0          1          0          0       9800
+  L'              0          1     0.1667       -2.5          0          0     8.3333          0  2516.6667
+  s_K             0          0     0.0083     -0.575          0          0    -2.0833          1  1230.8333
+  Z               0          0     1.1667      102.5          0          0   458.3333          0306416.6667
+  => Utilidad neta = 328116.6667  | plan: bidones=900, botellas=2716.6667, tapas=200  | precio sombra hora = 458.3333 $/h
+
+>>> ÓPTIMO: utilidad neta = 328117 $ ; plan = bidones=900, botellas=2717, tapas=200
+
+>>> P3 (K=1): sueldo máximo = 328117 - 242500 = 85617 $
+
+==============================================================================
+P4 - +100 h extrusora K=1  (máx. 1 producto/s, 700 h)
+==============================================================================
+
+* bidones: INFACTIBLE (si hay bidones debe haber tapas: y_B <= y_T)
+
+* Combinación botellas:
+
+  Z = 55·L' + 6000   (constante = 200·márgenes − preparación 5000)
+
+  Tableau inicial (iteración 0)
+  Base           L'       s_DL        s_H        s_K         LD
+  s_DL            1          1          0          0       4300
+  s_H          0.12          0          1          0        676
+  s_K          0.25          0          0          1       2950
+  Z             -55          0          0          0          0
+
+  -> Entra L' (costo reducido -55); cocientes: s_DL=4300, s_H=5633.3333, s_K=11800; sale s_DL; pivote 1
+
+  Tableau iteración 1
+  Base           L'       s_DL        s_H        s_K         LD
+  L'              1          1          0          0       4300
+  s_H             0      -0.12          1          0        160
+  s_K             0      -0.25          0          1       1875
+  Z               0         55          0          0     236500
+  => Utilidad neta = 242500  | plan: botellas=4500  | precio sombra hora = 0 $/h
+
+* Combinación tapas:
+
+  Z = 8·T' + -900   (constante = 200·márgenes − preparación 2500)
+
+  Tableau inicial (iteración 0)
+  Base           T'       s_DT        s_H        s_K         LD
+  s_DT            1          1          0          0       9800
+  s_H          0.02          0          1          0        696
+  s_K          0.05          0          0          1       2990
+  Z              -8          0          0          0          0
+
+  -> Entra T' (costo reducido -8); cocientes: s_DT=9800, s_H=34800, s_K=59800; sale s_DT; pivote 1
+
+  Tableau iteración 1
+  Base           T'       s_DT        s_H        s_K         LD
+  T'              1          1          0          0       9800
+  s_H             0      -0.02          1          0        500
+  s_K             0      -0.05          0          1       2500
+  Z               0          8          0          0      78400
+  => Utilidad neta = 77500  | plan: tapas=10000  | precio sombra hora = 0 $/h
+
+>>> ÓPTIMO: utilidad neta = 242500 $ ; plan = bidones=0, botellas=4500, tapas=0
+
+>>> P4 (K=1): máximo a pagar por 100 h = 0 $
+
+==============================================================================
+P5 - Preparación bidones -25% K=1  (máx. 1 producto/s, 600 h)
+==============================================================================
+
+* bidones: INFACTIBLE (si hay bidones debe haber tapas: y_B <= y_T)
+
+* Combinación botellas:
+
+  Z = 55·L' + 6000   (constante = 200·márgenes − preparación 5000)
+
+  Tableau inicial (iteración 0)
+  Base           L'       s_DL        s_H        s_K         LD
+  s_DL            1          1          0          0       4300
+  s_H          0.12          0          1          0        576
+  s_K          0.25          0          0          1       2950
+  Z             -55          0          0          0          0
+
+  -> Entra L' (costo reducido -55); cocientes: s_DL=4300, s_H=4800, s_K=11800; sale s_DL; pivote 1
+
+  Tableau iteración 1
+  Base           L'       s_DL        s_H        s_K         LD
+  L'              1          1          0          0       4300
+  s_H             0      -0.12          1          0         60
+  s_K             0      -0.25          0          1       1875
+  Z               0         55          0          0     236500
+  => Utilidad neta = 242500  | plan: botellas=4500  | precio sombra hora = 0 $/h
+
+* Combinación tapas:
+
+  Z = 8·T' + -900   (constante = 200·márgenes − preparación 2500)
+
+  Tableau inicial (iteración 0)
+  Base           T'       s_DT        s_H        s_K         LD
+  s_DT            1          1          0          0       9800
+  s_H          0.02          0          1          0        596
+  s_K          0.05          0          0          1       2990
+  Z              -8          0          0          0          0
+
+  -> Entra T' (costo reducido -8); cocientes: s_DT=9800, s_H=29800, s_K=59800; sale s_DT; pivote 1
+
+  Tableau iteración 1
+  Base           T'       s_DT        s_H        s_K         LD
+  T'              1          1          0          0       9800
+  s_H             0      -0.02          1          0        400
+  s_K             0      -0.05          0          1       2500
+  Z               0          8          0          0      78400
+  => Utilidad neta = 77500  | plan: tapas=10000  | precio sombra hora = 0 $/h
+
+>>> ÓPTIMO: utilidad neta = 242500 $ ; plan = bidones=0, botellas=4500, tapas=0
+
+==============================================================================
+P1 - Estado original K=2  (máx. 2 producto/s, 600 h)
+==============================================================================
+
+* bidones: INFACTIBLE (si hay bidones debe haber tapas: y_B <= y_T)
+
+* Combinación botellas:
+
+  Z = 55·L' + 6000   (constante = 200·márgenes − preparación 5000)
+
+  Tableau inicial (iteración 0)
+  Base           L'       s_DL        s_H        s_K         LD
+  s_DL            1          1          0          0       4300
+  s_H          0.12          0          1          0        576
+  s_K          0.25          0          0          1       2950
+  Z             -55          0          0          0          0
+
+  -> Entra L' (costo reducido -55); cocientes: s_DL=4300, s_H=4800, s_K=11800; sale s_DL; pivote 1
+
+  Tableau iteración 1
+  Base           L'       s_DL        s_H        s_K         LD
+  L'              1          1          0          0       4300
+  s_H             0      -0.12          1          0         60
+  s_K             0      -0.25          0          1       1875
+  Z               0         55          0          0     236500
+  => Utilidad neta = 242500  | plan: botellas=4500  | precio sombra hora = 0 $/h
+
+* Combinación tapas:
+
+  Z = 8·T' + -900   (constante = 200·márgenes − preparación 2500)
+
+  Tableau inicial (iteración 0)
+  Base           T'       s_DT        s_H        s_K         LD
+  s_DT            1          1          0          0       9800
+  s_H          0.02          0          1          0        596
+  s_K          0.05          0          0          1       2990
+  Z              -8          0          0          0          0
+
+  -> Entra T' (costo reducido -8); cocientes: s_DT=9800, s_H=29800, s_K=59800; sale s_DT; pivote 1
+
+  Tableau iteración 1
+  Base           T'       s_DT        s_H        s_K         LD
+  T'              1          1          0          0       9800
+  s_H             0      -0.02          1          0        400
+  s_K             0      -0.05          0          1       2500
+  Z               0          8          0          0      78400
+  => Utilidad neta = 77500  | plan: tapas=10000  | precio sombra hora = 0 $/h
+
+* bidones+botellas: INFACTIBLE (si hay bidones debe haber tapas: y_B <= y_T)
+
+* Combinación bidones+tapas:
+
+  Z = 240·B' + 8·T' + 15700   (constante = 200·márgenes − preparación 33900)
+
+  Tableau inicial (iteración 0)
+  Base           B'         T'       s_DB       s_DT        s_H        s_K         LD
+  s_DB            1          0          1          0          0          0        700
+  s_DT            0          1          0          1          0          0       9800
+  s_H           0.3       0.02          0          0          1          0        536
+  s_K           1.2       0.05          0          0          0          1       2750
+  Z            -240         -8          0          0          0          0          0
+
+  -> Entra B' (costo reducido -240); cocientes: s_DB=700, s_H=1786.6667, s_K=2291.6667; sale s_DB; pivote 1
+
+  Tableau iteración 1
+  Base           B'         T'       s_DB       s_DT        s_H        s_K         LD
+  B'              1          0          1          0          0          0        700
+  s_DT            0          1          0          1          0          0       9800
+  s_H             0       0.02       -0.3          0          1          0        326
+  s_K             0       0.05       -1.2          0          0          1       1910
+  Z               0         -8        240          0          0          0     168000
+
+  -> Entra T' (costo reducido -8); cocientes: s_DT=9800, s_H=16300, s_K=38200; sale s_DT; pivote 1
+
+  Tableau iteración 2
+  Base           B'         T'       s_DB       s_DT        s_H        s_K         LD
+  B'              1          0          1          0          0          0        700
+  T'              0          1          0          1          0          0       9800
+  s_H             0          0       -0.3      -0.02          1          0        130
+  s_K             0          0       -1.2      -0.05          0          1       1420
+  Z               0          0        240          8          0          0     246400
+  => Utilidad neta = 262100  | plan: bidones=900, tapas=10000  | precio sombra hora = 0 $/h
+
+* Combinación botellas+tapas:
+
+  Z = 55·L' + 8·T' + 5100   (constante = 200·márgenes − preparación 7500)
+
+  Tableau inicial (iteración 0)
+  Base           L'         T'       s_DL       s_DT        s_H        s_K         LD
+  s_DL            1          0          1          0          0          0       4300
+  s_DT            0          1          0          1          0          0       9800
+  s_H          0.12       0.02          0          0          1          0        572
+  s_K          0.25       0.05          0          0          0          1       2940
+  Z             -55         -8          0          0          0          0          0
+
+  -> Entra L' (costo reducido -55); cocientes: s_DL=4300, s_H=4766.6667, s_K=11760; sale s_DL; pivote 1
+
+  Tableau iteración 1
+  Base           L'         T'       s_DL       s_DT        s_H        s_K         LD
+  L'              1          0          1          0          0          0       4300
+  s_DT            0          1          0          1          0          0       9800
+  s_H             0       0.02      -0.12          0          1          0         56
+  s_K             0       0.05      -0.25          0          0          1       1865
+  Z               0         -8         55          0          0          0     236500
+
+  -> Entra T' (costo reducido -8); cocientes: s_DT=9800, s_H=2800, s_K=37300; sale s_H; pivote 0.02
+
+  Tableau iteración 2
+  Base           L'         T'       s_DL       s_DT        s_H        s_K         LD
+  L'              1          0          1          0          0          0       4300
+  s_DT            0          0          6          1        -50          0       7000
+  T'              0          1         -6          0         50          0       2800
+  s_K             0          0       0.05          0       -2.5          1       1725
+  Z               0          0          7          0        400          0     258900
+  => Utilidad neta = 264000  | plan: botellas=4500, tapas=3000  | precio sombra hora = 400 $/h
+
+>>> ÓPTIMO: utilidad neta = 264000 $ ; plan = bidones=0, botellas=4500, tapas=3000
+
+==============================================================================
+P3 - Con empleado adicional (K=3)  (máx. 3 producto/s, 600 h)
+==============================================================================
+
+* bidones: INFACTIBLE (si hay bidones debe haber tapas: y_B <= y_T)
+
+* Combinación botellas:
+
+  Z = 55·L' + 6000   (constante = 200·márgenes − preparación 5000)
+
+  Tableau inicial (iteración 0)
+  Base           L'       s_DL        s_H        s_K         LD
+  s_DL            1          1          0          0       4300
+  s_H          0.12          0          1          0        576
+  s_K          0.25          0          0          1       2950
+  Z             -55          0          0          0          0
+
+  -> Entra L' (costo reducido -55); cocientes: s_DL=4300, s_H=4800, s_K=11800; sale s_DL; pivote 1
+
+  Tableau iteración 1
+  Base           L'       s_DL        s_H        s_K         LD
+  L'              1          1          0          0       4300
+  s_H             0      -0.12          1          0         60
+  s_K             0      -0.25          0          1       1875
+  Z               0         55          0          0     236500
+  => Utilidad neta = 242500  | plan: botellas=4500  | precio sombra hora = 0 $/h
+
+* Combinación tapas:
+
+  Z = 8·T' + -900   (constante = 200·márgenes − preparación 2500)
+
+  Tableau inicial (iteración 0)
+  Base           T'       s_DT        s_H        s_K         LD
+  s_DT            1          1          0          0       9800
+  s_H          0.02          0          1          0        596
+  s_K          0.05          0          0          1       2990
+  Z              -8          0          0          0          0
+
+  -> Entra T' (costo reducido -8); cocientes: s_DT=9800, s_H=29800, s_K=59800; sale s_DT; pivote 1
+
+  Tableau iteración 1
+  Base           T'       s_DT        s_H        s_K         LD
+  T'              1          1          0          0       9800
+  s_H             0      -0.02          1          0        400
+  s_K             0      -0.05          0          1       2500
+  Z               0          8          0          0      78400
+  => Utilidad neta = 77500  | plan: tapas=10000  | precio sombra hora = 0 $/h
+
+* bidones+botellas: INFACTIBLE (si hay bidones debe haber tapas: y_B <= y_T)
+
+* Combinación bidones+tapas:
+
+  Z = 240·B' + 8·T' + 15700   (constante = 200·márgenes − preparación 33900)
+
+  Tableau inicial (iteración 0)
+  Base           B'         T'       s_DB       s_DT        s_H        s_K         LD
+  s_DB            1          0          1          0          0          0        700
+  s_DT            0          1          0          1          0          0       9800
+  s_H           0.3       0.02          0          0          1          0        536
+  s_K           1.2       0.05          0          0          0          1       2750
+  Z            -240         -8          0          0          0          0          0
+
+  -> Entra B' (costo reducido -240); cocientes: s_DB=700, s_H=1786.6667, s_K=2291.6667; sale s_DB; pivote 1
+
+  Tableau iteración 1
+  Base           B'         T'       s_DB       s_DT        s_H        s_K         LD
+  B'              1          0          1          0          0          0        700
+  s_DT            0          1          0          1          0          0       9800
+  s_H             0       0.02       -0.3          0          1          0        326
+  s_K             0       0.05       -1.2          0          0          1       1910
+  Z               0         -8        240          0          0          0     168000
+
+  -> Entra T' (costo reducido -8); cocientes: s_DT=9800, s_H=16300, s_K=38200; sale s_DT; pivote 1
+
+  Tableau iteración 2
+  Base           B'         T'       s_DB       s_DT        s_H        s_K         LD
+  B'              1          0          1          0          0          0        700
+  T'              0          1          0          1          0          0       9800
+  s_H             0          0       -0.3      -0.02          1          0        130
+  s_K             0          0       -1.2      -0.05          0          1       1420
+  Z               0          0        240          8          0          0     246400
+  => Utilidad neta = 262100  | plan: bidones=900, tapas=10000  | precio sombra hora = 0 $/h
+
+* Combinación botellas+tapas:
+
+  Z = 55·L' + 8·T' + 5100   (constante = 200·márgenes − preparación 7500)
+
+  Tableau inicial (iteración 0)
+  Base           L'         T'       s_DL       s_DT        s_H        s_K         LD
+  s_DL            1          0          1          0          0          0       4300
+  s_DT            0          1          0          1          0          0       9800
+  s_H          0.12       0.02          0          0          1          0        572
+  s_K          0.25       0.05          0          0          0          1       2940
+  Z             -55         -8          0          0          0          0          0
+
+  -> Entra L' (costo reducido -55); cocientes: s_DL=4300, s_H=4766.6667, s_K=11760; sale s_DL; pivote 1
+
+  Tableau iteración 1
+  Base           L'         T'       s_DL       s_DT        s_H        s_K         LD
+  L'              1          0          1          0          0          0       4300
+  s_DT            0          1          0          1          0          0       9800
+  s_H             0       0.02      -0.12          0          1          0         56
+  s_K             0       0.05      -0.25          0          0          1       1865
+  Z               0         -8         55          0          0          0     236500
+
+  -> Entra T' (costo reducido -8); cocientes: s_DT=9800, s_H=2800, s_K=37300; sale s_H; pivote 0.02
+
+  Tableau iteración 2
+  Base           L'         T'       s_DL       s_DT        s_H        s_K         LD
+  L'              1          0          1          0          0          0       4300
+  s_DT            0          0          6          1        -50          0       7000
+  T'              0          1         -6          0         50          0       2800
+  s_K             0          0       0.05          0       -2.5          1       1725
+  Z               0          0          7          0        400          0     258900
+  => Utilidad neta = 264000  | plan: botellas=4500, tapas=3000  | precio sombra hora = 400 $/h
+
+* Combinación bidones+botellas+tapas:
+
+  Z = 240·B' + 55·L' + 8·T' + 21700   (constante = 200·márgenes − preparación 38900)
+
+  Tableau inicial (iteración 0)
+  Base           B'         L'         T'       s_DB       s_DL       s_DT        s_H        s_K         LD
+  s_DB            1          0          0          1          0          0          0          0        700
+  s_DL            0          1          0          0          1          0          0          0       4300
+  s_DT            0          0          1          0          0          1          0          0       9800
+  s_H           0.3       0.12       0.02          0          0          0          1          0        512
+  s_K           1.2       0.25       0.05          0          0          0          0          1       2700
+  Z            -240        -55         -8          0          0          0          0          0          0
+
+  -> Entra B' (costo reducido -240); cocientes: s_DB=700, s_H=1706.6667, s_K=2250; sale s_DB; pivote 1
+
+  Tableau iteración 1
+  Base           B'         L'         T'       s_DB       s_DL       s_DT        s_H        s_K         LD
+  B'              1          0          0          1          0          0          0          0        700
+  s_DL            0          1          0          0          1          0          0          0       4300
+  s_DT            0          0          1          0          0          1          0          0       9800
+  s_H             0       0.12       0.02       -0.3          0          0          1          0        302
+  s_K             0       0.25       0.05       -1.2          0          0          0          1       1860
+  Z               0        -55         -8        240          0          0          0          0     168000
+
+  -> Entra L' (costo reducido -55); cocientes: s_DL=4300, s_H=2516.6667, s_K=7440; sale s_H; pivote 0.12
+
+  Tableau iteración 2
+  Base           B'         L'         T'       s_DB       s_DL       s_DT        s_H        s_K         LD
+  B'              1          0          0          1          0          0          0          0        700
+  s_DL            0          0    -0.1667        2.5          1          0    -8.3333          0  1783.3333
+  s_DT            0          0          1          0          0          1          0          0       9800
+  L'              0          1     0.1667       -2.5          0          0     8.3333          0  2516.6667
+  s_K             0          0     0.0083     -0.575          0          0    -2.0833          1  1230.8333
+  Z               0          0     1.1667      102.5          0          0   458.3333          0306416.6667
+  => Utilidad neta = 328116.6667  | plan: bidones=900, botellas=2716.6667, tapas=200  | precio sombra hora = 458.3333 $/h
+
+>>> ÓPTIMO: utilidad neta = 328117 $ ; plan = bidones=900, botellas=2717, tapas=200
+
+>>> P3 (K=2): sueldo máximo = 328117 - 264000 = 64117 $
+
+==============================================================================
+P4 - +100 h extrusora K=2  (máx. 2 producto/s, 700 h)
+==============================================================================
+
+* bidones: INFACTIBLE (si hay bidones debe haber tapas: y_B <= y_T)
+
+* Combinación botellas:
+
+  Z = 55·L' + 6000   (constante = 200·márgenes − preparación 5000)
+
+  Tableau inicial (iteración 0)
+  Base           L'       s_DL        s_H        s_K         LD
+  s_DL            1          1          0          0       4300
+  s_H          0.12          0          1          0        676
+  s_K          0.25          0          0          1       2950
+  Z             -55          0          0          0          0
+
+  -> Entra L' (costo reducido -55); cocientes: s_DL=4300, s_H=5633.3333, s_K=11800; sale s_DL; pivote 1
+
+  Tableau iteración 1
+  Base           L'       s_DL        s_H        s_K         LD
+  L'              1          1          0          0       4300
+  s_H             0      -0.12          1          0        160
+  s_K             0      -0.25          0          1       1875
+  Z               0         55          0          0     236500
+  => Utilidad neta = 242500  | plan: botellas=4500  | precio sombra hora = 0 $/h
+
+* Combinación tapas:
+
+  Z = 8·T' + -900   (constante = 200·márgenes − preparación 2500)
+
+  Tableau inicial (iteración 0)
+  Base           T'       s_DT        s_H        s_K         LD
+  s_DT            1          1          0          0       9800
+  s_H          0.02          0          1          0        696
+  s_K          0.05          0          0          1       2990
+  Z              -8          0          0          0          0
+
+  -> Entra T' (costo reducido -8); cocientes: s_DT=9800, s_H=34800, s_K=59800; sale s_DT; pivote 1
+
+  Tableau iteración 1
+  Base           T'       s_DT        s_H        s_K         LD
+  T'              1          1          0          0       9800
+  s_H             0      -0.02          1          0        500
+  s_K             0      -0.05          0          1       2500
+  Z               0          8          0          0      78400
+  => Utilidad neta = 77500  | plan: tapas=10000  | precio sombra hora = 0 $/h
+
+* bidones+botellas: INFACTIBLE (si hay bidones debe haber tapas: y_B <= y_T)
+
+* Combinación bidones+tapas:
+
+  Z = 240·B' + 8·T' + 15700   (constante = 200·márgenes − preparación 33900)
+
+  Tableau inicial (iteración 0)
+  Base           B'         T'       s_DB       s_DT        s_H        s_K         LD
+  s_DB            1          0          1          0          0          0        700
+  s_DT            0          1          0          1          0          0       9800
+  s_H           0.3       0.02          0          0          1          0        636
+  s_K           1.2       0.05          0          0          0          1       2750
+  Z            -240         -8          0          0          0          0          0
+
+  -> Entra B' (costo reducido -240); cocientes: s_DB=700, s_H=2120, s_K=2291.6667; sale s_DB; pivote 1
+
+  Tableau iteración 1
+  Base           B'         T'       s_DB       s_DT        s_H        s_K         LD
+  B'              1          0          1          0          0          0        700
+  s_DT            0          1          0          1          0          0       9800
+  s_H             0       0.02       -0.3          0          1          0        426
+  s_K             0       0.05       -1.2          0          0          1       1910
+  Z               0         -8        240          0          0          0     168000
+
+  -> Entra T' (costo reducido -8); cocientes: s_DT=9800, s_H=21300, s_K=38200; sale s_DT; pivote 1
+
+  Tableau iteración 2
+  Base           B'         T'       s_DB       s_DT        s_H        s_K         LD
+  B'              1          0          1          0          0          0        700
+  T'              0          1          0          1          0          0       9800
+  s_H             0          0       -0.3      -0.02          1          0        230
+  s_K             0          0       -1.2      -0.05          0          1       1420
+  Z               0          0        240          8          0          0     246400
+  => Utilidad neta = 262100  | plan: bidones=900, tapas=10000  | precio sombra hora = 0 $/h
+
+* Combinación botellas+tapas:
+
+  Z = 55·L' + 8·T' + 5100   (constante = 200·márgenes − preparación 7500)
+
+  Tableau inicial (iteración 0)
+  Base           L'         T'       s_DL       s_DT        s_H        s_K         LD
+  s_DL            1          0          1          0          0          0       4300
+  s_DT            0          1          0          1          0          0       9800
+  s_H          0.12       0.02          0          0          1          0        672
+  s_K          0.25       0.05          0          0          0          1       2940
+  Z             -55         -8          0          0          0          0          0
+
+  -> Entra L' (costo reducido -55); cocientes: s_DL=4300, s_H=5600, s_K=11760; sale s_DL; pivote 1
+
+  Tableau iteración 1
+  Base           L'         T'       s_DL       s_DT        s_H        s_K         LD
+  L'              1          0          1          0          0          0       4300
+  s_DT            0          1          0          1          0          0       9800
+  s_H             0       0.02      -0.12          0          1          0        156
+  s_K             0       0.05      -0.25          0          0          1       1865
+  Z               0         -8         55          0          0          0     236500
+
+  -> Entra T' (costo reducido -8); cocientes: s_DT=9800, s_H=7800, s_K=37300; sale s_H; pivote 0.02
+
+  Tableau iteración 2
+  Base           L'         T'       s_DL       s_DT        s_H        s_K         LD
+  L'              1          0          1          0          0          0       4300
+  s_DT            0          0          6          1        -50          0       2000
+  T'              0          1         -6          0         50          0       7800
+  s_K             0          0       0.05          0       -2.5          1       1475
+  Z               0          0          7          0        400          0     298900
+  => Utilidad neta = 304000  | plan: botellas=4500, tapas=8000  | precio sombra hora = 400 $/h
+
+>>> ÓPTIMO: utilidad neta = 304000 $ ; plan = bidones=0, botellas=4500, tapas=8000
+
+>>> P4 (K=2): máximo a pagar por 100 h = 40000 $
+
+==============================================================================
+P5 - Preparación bidones -25% K=2  (máx. 2 producto/s, 600 h)
+==============================================================================
+
+* bidones: INFACTIBLE (si hay bidones debe haber tapas: y_B <= y_T)
+
+* Combinación botellas:
+
+  Z = 55·L' + 6000   (constante = 200·márgenes − preparación 5000)
+
+  Tableau inicial (iteración 0)
+  Base           L'       s_DL        s_H        s_K         LD
+  s_DL            1          1          0          0       4300
+  s_H          0.12          0          1          0        576
+  s_K          0.25          0          0          1       2950
+  Z             -55          0          0          0          0
+
+  -> Entra L' (costo reducido -55); cocientes: s_DL=4300, s_H=4800, s_K=11800; sale s_DL; pivote 1
+
+  Tableau iteración 1
+  Base           L'       s_DL        s_H        s_K         LD
+  L'              1          1          0          0       4300
+  s_H             0      -0.12          1          0         60
+  s_K             0      -0.25          0          1       1875
+  Z               0         55          0          0     236500
+  => Utilidad neta = 242500  | plan: botellas=4500  | precio sombra hora = 0 $/h
+
+* Combinación tapas:
+
+  Z = 8·T' + -900   (constante = 200·márgenes − preparación 2500)
+
+  Tableau inicial (iteración 0)
+  Base           T'       s_DT        s_H        s_K         LD
+  s_DT            1          1          0          0       9800
+  s_H          0.02          0          1          0        596
+  s_K          0.05          0          0          1       2990
+  Z              -8          0          0          0          0
+
+  -> Entra T' (costo reducido -8); cocientes: s_DT=9800, s_H=29800, s_K=59800; sale s_DT; pivote 1
+
+  Tableau iteración 1
+  Base           T'       s_DT        s_H        s_K         LD
+  T'              1          1          0          0       9800
+  s_H             0      -0.02          1          0        400
+  s_K             0      -0.05          0          1       2500
+  Z               0          8          0          0      78400
+  => Utilidad neta = 77500  | plan: tapas=10000  | precio sombra hora = 0 $/h
+
+* bidones+botellas: INFACTIBLE (si hay bidones debe haber tapas: y_B <= y_T)
+
+* Combinación bidones+tapas:
+
+  Z = 240·B' + 8·T' + 23550   (constante = 200·márgenes − preparación 26050)
+
+  Tableau inicial (iteración 0)
+  Base           B'         T'       s_DB       s_DT        s_H        s_K         LD
+  s_DB            1          0          1          0          0          0        700
+  s_DT            0          1          0          1          0          0       9800
+  s_H           0.3       0.02          0          0          1          0        536
+  s_K           1.2       0.05          0          0          0          1       2750
+  Z            -240         -8          0          0          0          0          0
+
+  -> Entra B' (costo reducido -240); cocientes: s_DB=700, s_H=1786.6667, s_K=2291.6667; sale s_DB; pivote 1
+
+  Tableau iteración 1
+  Base           B'         T'       s_DB       s_DT        s_H        s_K         LD
+  B'              1          0          1          0          0          0        700
+  s_DT            0          1          0          1          0          0       9800
+  s_H             0       0.02       -0.3          0          1          0        326
+  s_K             0       0.05       -1.2          0          0          1       1910
+  Z               0         -8        240          0          0          0     168000
+
+  -> Entra T' (costo reducido -8); cocientes: s_DT=9800, s_H=16300, s_K=38200; sale s_DT; pivote 1
+
+  Tableau iteración 2
+  Base           B'         T'       s_DB       s_DT        s_H        s_K         LD
+  B'              1          0          1          0          0          0        700
+  T'              0          1          0          1          0          0       9800
+  s_H             0          0       -0.3      -0.02          1          0        130
+  s_K             0          0       -1.2      -0.05          0          1       1420
+  Z               0          0        240          8          0          0     246400
+  => Utilidad neta = 269950  | plan: bidones=900, tapas=10000  | precio sombra hora = 0 $/h
+
+* Combinación botellas+tapas:
+
+  Z = 55·L' + 8·T' + 5100   (constante = 200·márgenes − preparación 7500)
+
+  Tableau inicial (iteración 0)
+  Base           L'         T'       s_DL       s_DT        s_H        s_K         LD
+  s_DL            1          0          1          0          0          0       4300
+  s_DT            0          1          0          1          0          0       9800
+  s_H          0.12       0.02          0          0          1          0        572
+  s_K          0.25       0.05          0          0          0          1       2940
+  Z             -55         -8          0          0          0          0          0
+
+  -> Entra L' (costo reducido -55); cocientes: s_DL=4300, s_H=4766.6667, s_K=11760; sale s_DL; pivote 1
+
+  Tableau iteración 1
+  Base           L'         T'       s_DL       s_DT        s_H        s_K         LD
+  L'              1          0          1          0          0          0       4300
+  s_DT            0          1          0          1          0          0       9800
+  s_H             0       0.02      -0.12          0          1          0         56
+  s_K             0       0.05      -0.25          0          0          1       1865
+  Z               0         -8         55          0          0          0     236500
+
+  -> Entra T' (costo reducido -8); cocientes: s_DT=9800, s_H=2800, s_K=37300; sale s_H; pivote 0.02
+
+  Tableau iteración 2
+  Base           L'         T'       s_DL       s_DT        s_H        s_K         LD
+  L'              1          0          1          0          0          0       4300
+  s_DT            0          0          6          1        -50          0       7000
+  T'              0          1         -6          0         50          0       2800
+  s_K             0          0       0.05          0       -2.5          1       1725
+  Z               0          0          7          0        400          0     258900
+  => Utilidad neta = 264000  | plan: botellas=4500, tapas=3000  | precio sombra hora = 400 $/h
+
+>>> ÓPTIMO: utilidad neta = 269950 $ ; plan = bidones=900, botellas=0, tapas=10000
