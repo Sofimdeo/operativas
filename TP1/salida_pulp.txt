@@ -1,0 +1,34 @@
+=== 1. Estado original (solo un producto al mes, K = 1) ===
+Estado: Optimal
+  Bidon    =        0 u
+  Botella  =     4500 u
+  Tapa     =        0 u
+  Utilidad neta = $242,500
+
+=== 2. Margen de contribución por hora de extrusora ===
+  Bidon   : 240 / 0.3 = 800 $/h
+  Botella : 55 / 0.12 = 458 $/h
+  Tapa    : 8 / 0.02 = 400 $/h
+
+=== 3. Empleado adicional (K = 3) ===
+Estado: Optimal
+  Bidon    =      900 u
+  Botella  =     2717 u
+  Tapa     =      200 u
+  Utilidad neta = $328,117
+  Sueldo máximo = 328,117 - 242,500 = $85,617
+
+=== 4. 100 horas extra de extrusora (700 h) ===
+Estado: Optimal
+  Bidon    =        0 u
+  Botella  =     4500 u
+  Tapa     =        0 u
+  Utilidad neta = $242,500
+  Máximo a pagar = 242,500 - 242,500 = $0
+
+=== 5. Preparación de bidones 25 % más barata ===
+Estado: Optimal
+  Bidon    =        0 u
+  Botella  =     4500 u
+  Tapa     =        0 u
+  Utilidad neta = $242,500
