@@ -1,0 +1,24 @@
+descripcion,valor,unidad
+Precio de venta del bidón,560,$/u
+Precio de venta de la botella,150,$/u
+Precio de venta de la tapa,30,$/u
+Costo variable unitario del bidón,320,$/u
+Costo variable unitario de la botella,95,$/u
+Costo variable unitario de la tapa,22,$/u
+Horas de extrusora por bidón,"0,3",h/u
+Horas de extrusora por botella,"0,12",h/u
+Horas de extrusora por tapa,"0,02",h/u
+Polímero por bidón,"1,2",kg/u
+Polímero por botella,"0,25",kg/u
+Polímero por tapa,"0,05",kg/u
+Costo fijo de preparar la línea de bidones,31400,$
+Costo fijo de preparar la línea de botellas,5000,$
+Costo fijo de preparar la línea de tapas,2500,$
+Demanda máxima mensual de bidones,900,u
+Demanda máxima mensual de botellas,4500,u
+Demanda máxima mensual de tapas,10000,u
+"Si se fabrica un producto, hay que hacer al menos esta cantidad",200,u
+Horas de extrusora disponibles en el mes,600,h
+Polímero disponible en el mes,3000,kg
+Tope de gasto en preparaciones de línea,60000,$
+Cantidad máxima de productos distintos a fabricar en el mes,2,productos
